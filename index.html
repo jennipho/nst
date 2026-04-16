@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>깻잎논쟁 — The Perilla Leaf Debate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --g-dark:   #0d1f0d;
+      --g-deep:   #1a3a1a;
+      --g-mid:    #2d6a2d;
+      --g-bright: #4a8a4a;
+      --g-light:  #eaf5ea;
+      --red:      #c0392b;
+      --red-bg:   #fff5f4;
+      --red-bdr:  #f5c6c1;
+      --blue:     #2471a3;
+      --blue-bg:  #f0f6ff;
+      --blue-bdr: #c1d9f5;
+      --text:     #1a1a1a;
+      --muted:    #777;
+      --border:   #e2ece2;
+      --card:     #ffffff;
+      --page-bg:  #f7faf7;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--page-bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ── HERO ──────────────────────────────────── */
+
+    .hero {
+      min-height: 100vh;
+      background: var(--g-dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 24px 90px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* background ghost leaves */
+    .bg-leaves { position: absolute; inset: 0; pointer-events: none; }
+
+    .bg-leaf { position: absolute; opacity: 0.07; }
+    .bg-leaf:nth-child(1) { top: 7%;  left: 5%;  width: 90px;  animation: sway1 9s  ease-in-out infinite; }
+    .bg-leaf:nth-child(2) { bottom: 11%; left: 3%;  width: 68px;  animation: sway2 11s ease-in-out infinite 1s; }
+    .bg-leaf:nth-child(3) { top: 13%; right: 4%; width: 78px;  animation: sway1 8s  ease-in-out infinite 2s; }
+    .bg-leaf:nth-child(4) { bottom: 16%; right: 6%; width: 100px; animation: sway3 10s ease-in-out infinite 0.5s; }
+
+    @keyframes sway1 {
+      0%,100% { transform: rotate(-8deg) translateY(0); }
+      50%      { transform: rotate(8deg)  translateY(-20px); }
+    }
+    @keyframes sway2 {
+      0%,100% { transform: rotate(5deg)   translateY(0); }
+      50%      { transform: rotate(-10deg) translateY(-15px); }
+    }
+    @keyframes sway3 {
+      0%,100% { transform: rotate(-3deg) translateY(0); }
+      33%      { transform: rotate(6deg)  translateY(-12px); }
+      66%      { transform: rotate(-6deg) translateY(-18px); }
+    }
+
+    /* main leaf */
+    .hero-leaf-wrap { margin-bottom: 36px; }
+
+    .hero-leaf {
+      width: 130px;
+      height: auto;
+      display: block;
+      animation: leafFloat 5s ease-in-out infinite;
+      filter: drop-shadow(0 16px 32px rgba(0,0,0,0.55));
+    }
+
+    .hero-leaf-shadow {
+      width: 68px;
+      height: 10px;
+      background: rgba(0,0,0,0.4);
+      border-radius: 50%;
+      margin: 6px auto 0;
+      filter: blur(5px);
+      animation: shadowFloat 5s ease-in-out infinite;
+    }
+
+    @keyframes leafFloat {
+      0%,100% { transform: translateY(0)    rotate(-3deg); }
+      30%      { transform: translateY(-22px) rotate(4deg); }
+      70%      { transform: translateY(-10px) rotate(-1deg); }
+    }
+    @keyframes shadowFloat {
+      0%,100% { transform: scaleX(1);    opacity: 0.5; }
+      30%      { transform: scaleX(0.55); opacity: 0.2; }
+      70%      { transform: scaleX(0.75); opacity: 0.3; }
+    }
+
+    /* hero text */
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.6);
+      padding: 5px 16px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 700;
+      color: white;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      margin-bottom: 8px;
+    }
+
+    .hero-hangul {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.38);
+      font-weight: 300;
+      letter-spacing: 4px;
+      margin-bottom: 30px;
+    }
+
+    .hero-scenario {
+      max-width: 510px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px;
+      padding: 20px 26px;
+      color: rgba(255,255,255,0.78);
+      font-style: italic;
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 36px;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: white;
+      color: var(--g-deep);
+      padding: 15px 36px;
+      border-radius: 50px;
+      font-size: 0.93rem;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .hero-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 36px rgba(0,0,0,0.4);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.22);
+      font-size: 0.72rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      animation: scrollPulse 2.5s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%,100% { opacity: 0.22; transform: translateX(-50%) translateY(0); }
+      50%      { opacity: 0.5;  transform: translateX(-50%) translateY(5px); }
+    }
+
+    /* ── NAV ──────────────────────────────────── */
+
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(247,250,247,0.93);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2px;
+      padding: 10px 16px;
+    }
+    .site-nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.84rem;
+      font-weight: 500;
+      padding: 6px 16px;
+      border-radius: 20px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .site-nav a:hover { background: var(--g-light); color: var(--g-mid); }
+
+    /* ── LAYOUT ──────────────────────────────── */
+
+    .main-wrap {
+      max-width: 840px;
+      margin: 0 auto;
+      padding: 56px 24px 88px;
+    }
+
+    /* ── VOTE CARD ───────────────────────────── */
+
+    .vote-card {
+      background: var(--card);
+      border-radius: 20px;
+      padding: 44px 40px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 30px rgba(0,50,0,0.07);
+      margin-bottom: 72px;
+    }
+
+    .vote-header { text-align: center; margin-bottom: 32px; }
+    .vote-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--g-mid);
+      margin-bottom: 8px;
+    }
+    .vote-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--g-deep);
+      margin-bottom: 5px;
+      letter-spacing: -0.3px;
+    }
+    .vote-sub { font-size: 0.88rem; color: var(--muted); font-style: italic; }
+
+    /* buttons */
+    .vote-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+
+    .vote-opt {
+      border: 2px solid transparent;
+      border-radius: 14px;
+      padding: 22px 18px;
+      cursor: pointer;
+      text-align: left;
+      font-family: inherit;
+      transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+    }
+    .vote-opt:hover     { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.09); }
+    .vote-opt:active    { transform: scale(0.98); }
+
+    .opt-fine          { background: var(--blue-bg);  border-color: var(--blue-bdr); }
+    .opt-uncomfortable { background: var(--red-bg);   border-color: var(--red-bdr);  }
+    .opt-fine:hover          { border-color: var(--blue); }
+    .opt-uncomfortable:hover { border-color: var(--red);  }
+
+    .opt-icon  { font-size: 1.8rem; display: block; margin-bottom: 8px; }
+    .opt-title { font-size: 0.96rem; font-weight: 700; display: block; margin-bottom: 3px; }
+    .opt-desc  { font-size: 0.81rem; color: var(--muted); line-height: 1.4; }
+    .opt-fine .opt-title          { color: var(--blue); }
+    .opt-uncomfortable .opt-title { color: var(--red);  }
+
+    .vote-depends-row { text-align: center; margin-bottom: 20px; }
+    .vote-depends-btn {
+      background: none;
+      border: none;
+      font-family: inherit;
+      font-size: 0.82rem;
+      color: var(--muted);
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      padding: 6px;
+    }
+    .vote-depends-btn:hover { color: var(--text); }
+
+    /* confirmed banner */
+    .vote-confirmed {
+      display: none;
+      text-align: center;
+      background: var(--g-light);
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-size: 0.87rem;
+      font-weight: 500;
+      color: var(--g-mid);
+      margin-bottom: 22px;
+    }
+    .vote-confirmed.show { display: block; }
+
+    /* results */
+    .vote-results { display: none; }
+    .vote-results.show { display: block; }
+
+    .result-row { margin-bottom: 16px; }
+    .result-row-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 7px;
+    }
+    .result-label {
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .voted-tag {
+      background: var(--g-mid);
+      color: white;
+      font-size: 0.66rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+      display: none;
+    }
+    .voted-tag.show { display: inline-block; }
+
+    .result-pct { font-size: 1.05rem; font-weight: 700; }
+    .pct-blue  { color: var(--blue); }
+    .pct-red   { color: var(--red);  }
+    .pct-gray  { color: #888; }
+
+    .result-track { height: 9px; background: #efefef; border-radius: 6px; overflow: hidden; }
+    .result-fill  { height: 100%; border-radius: 6px; width: 0; transition: width 1.4s cubic-bezier(0.22,1,0.36,1); }
+    .fill-blue { background: linear-gradient(to right, #5ba0e0, var(--blue)); }
+    .fill-red  { background: linear-gradient(to right, #e87070, var(--red));  }
+    .fill-gray { background: linear-gradient(to right, #aaa, #888); }
+
+    .vote-tally { text-align: center; margin-top: 20px; font-size: 0.82rem; color: var(--muted); }
+    .vote-tally-note { font-size: 0.73rem; color: #bbb; margin-top: 3px; }
+
+    /* ── CONTENT SECTIONS ────────────────────── */
+
+    .content-section { margin-bottom: 64px; }
+
+    .eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--g-mid);
+      margin-bottom: 8px;
+    }
+    .content-section h2 {
+      font-size: 1.65rem;
+      font-weight: 700;
+      color: var(--g-deep);
+      letter-spacing: -0.5px;
+      margin-bottom: 20px;
+    }
+    .content-section p { font-size: 0.97rem; color: #3a3a3a; margin-bottom: 14px; }
+    .content-section strong { color: var(--text); }
+
+    .callout {
+      background: var(--g-light);
+      border-left: 4px solid var(--g-mid);
+      padding: 16px 20px;
+      border-radius: 0 10px 10px 0;
+      margin: 20px 0;
+      font-size: 0.94rem;
+      color: #2a4a2a;
+    }
+    .blockquote {
+      background: #fffdf0;
+      border-left: 4px solid #d4a820;
+      padding: 16px 20px;
+      border-radius: 0 10px 10px 0;
+      margin: 22px 0;
+      font-style: italic;
+      font-size: 0.94rem;
+    }
+    .blockquote cite {
+      display: block;
+      margin-top: 8px;
+      font-style: normal;
+      font-size: 0.79rem;
+      color: var(--muted);
+    }
+
+    /* sides grid */
+    .sides-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 6px; }
+
+    .side-card { border-radius: 14px; padding: 26px; }
+    .side-card.sc-red  { background: var(--red-bg);  border: 1px solid var(--red-bdr);  }
+    .side-card.sc-blue { background: var(--blue-bg); border: 1px solid var(--blue-bdr); }
+
+    .side-card h3 { font-size: 0.91rem; font-weight: 700; margin-bottom: 14px; }
+    .sc-red  h3 { color: var(--red);  }
+    .sc-blue h3 { color: var(--blue); }
+
+    .side-card ul { list-style: none; }
+    .side-card ul li {
+      font-size: 0.87rem;
+      color: #3a3a3a;
+      padding: 5px 0 5px 14px;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      position: relative;
+      line-height: 1.5;
+    }
+    .side-card ul li:last-child { border-bottom: none; }
+    .side-card ul li::before { content: '–'; position: absolute; left: 0; color: rgba(0,0,0,0.25); }
+
+    /* verdict */
+    .verdict-card {
+      background: var(--g-deep);
+      border-radius: 18px;
+      padding: 40px 36px;
+      text-align: center;
+    }
+    .verdict-card h3 { font-size: 1.2rem; font-weight: 700; color: white; margin-bottom: 12px; }
+    .verdict-card p  { font-size: 0.95rem; color: rgba(255,255,255,0.75); max-width: 600px; margin: 0 auto; }
+
+    /* ── FOOTER ───────────────────────────────── */
+
+    footer {
+      background: var(--g-dark);
+      text-align: center;
+      padding: 32px 20px;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.32);
+    }
+
+    /* ── RESPONSIVE ───────────────────────────── */
+
+    @media (max-width: 600px) {
+      .vote-card     { padding: 28px 20px; }
+      .vote-options  { grid-template-columns: 1fr; }
+      .sides-grid    { grid-template-columns: 1fr; }
+      .verdict-card  { padding: 28px 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ HERO ═══ -->
+<section class="hero">
+
+  <div class="bg-leaves" aria-hidden="true">
+    <!-- Reusable leaf path used for all bg + main leaf -->
+    <svg class="bg-leaf" viewBox="0 0 160 200" xmlns="http://www.w3.org/2000/svg">
+      <path d="M80 12C64 12 44 22 32 42C20 62 18 85 24 105C30 125 44 140 58 150L80 161L102 150C116 140 130 125 136 105C142 85 140 62 128 42C116 22 96 12 80 12Z" fill="white"/>
+      <path d="M80 17Q81 88 80 157" stroke="rgba(0,0,0,0.18)" stroke-width="2.5" fill="none"/>
+      <path d="M80 157Q79 173 77 185" stroke="rgba(0,0,0,0.18)" stroke-width="4" fill="none" stroke-linecap="round"/>
+    </svg>
+    <svg class="bg-leaf" viewBox="0 0 160 200" xmlns="http://www.w3.org/2000/svg">
+      <path d="M80 12C64 12 44 22 32 42C20 62 18 85 24 105C30 125 44 140 58 150L80 161L102 150C116 140 130 125 136 105C142 85 140 62 128 42C116 22 96 12 80 12Z" fill="white"/>
+      <path d="M80 17Q81 88 80 157" stroke="rgba(0,0,0,0.18)" stroke-width="2.5" fill="none"/>
+      <path d="M80 157Q79 173 77 185" stroke="rgba(0,0,0,0.18)" stroke-width="4" fill="none" stroke-linecap="round"/>
+    </svg>
+    <svg class="bg-leaf" viewBox="0 0 160 200" xmlns="http://www.w3.org/2000/svg">
+      <path d="M80 12C64 12 44 22 32 42C20 62 18 85 24 105C30 125 44 140 58 150L80 161L102 150C116 140 130 125 136 105C142 85 140 62 128 42C116 22 96 12 80 12Z" fill="white"/>
+      <path d="M80 17Q81 88 80 157" stroke="rgba(0,0,0,0.18)" stroke-width="2.5" fill="none"/>
+      <path d="M80 157Q79 173 77 185" stroke="rgba(0,0,0,0.18)" stroke-width="4" fill="none" stroke-linecap="round"/>
+    </svg>
+    <svg class="bg-leaf" viewBox="0 0 160 200" xmlns="http://www.w3.org/2000/svg">
+      <path d="M80 12C64 12 44 22 32 42C20 62 18 85 24 105C30 125 44 140 58 150L80 161L102 150C116 140 130 125 136 105C142 85 140 62 128 42C116 22 96 12 80 12Z" fill="white"/>
+      <path d="M80 17Q81 88 80 157" stroke="rgba(0,0,0,0.18)" stroke-width="2.5" fill="none"/>
+      <path d="M80 157Q79 173 77 185" stroke="rgba(0,0,0,0.18)" stroke-width="4" fill="none" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <div class="hero-leaf-wrap">
+    <svg class="hero-leaf" viewBox="0 0 160 200" xmlns="http://www.w3.org/2000/svg">
+      <!-- body -->
+      <path d="M80 12C64 12 44 22 32 42C20 62 18 85 24 105C30 125 44 140 58 150L80 161L102 150C116 140 130 125 136 105C142 85 140 62 128 42C116 22 96 12 80 12Z" fill="#4a8a4a"/>
+      <!-- highlight -->
+      <path d="M80 17C67 17 50 27 40 44C32 57 30 74 34 90" stroke="#72b872" stroke-width="4" fill="none" opacity="0.45" stroke-linecap="round"/>
+      <!-- central vein -->
+      <path d="M80 17Q81 88 80 157" stroke="#2d5a2d" stroke-width="2.5" fill="none" opacity="0.45"/>
+      <!-- side veins left -->
+      <path d="M80 55Q65 52 48 44"  stroke="#2d5a2d" stroke-width="1.4" fill="none" opacity="0.38"/>
+      <path d="M80 75Q62 74 44 67"  stroke="#2d5a2d" stroke-width="1.4" fill="none" opacity="0.38"/>
+      <path d="M80 95Q61 96 41 92"  stroke="#2d5a2d" stroke-width="1.4" fill="none" opacity="0.38"/>
+      <path d="M80 115Q62 118 44 117" stroke="#2d5a2d" stroke-width="1.4" fill="none" opacity="0.38"/>
+      <path d="M80 135Q64 140 50 141" stroke="#2d5a2d" stroke-width="1.4" fill="none" opacity="0.38"/>
+      <!-- side veins right -->
+      <path d="M80 55Q95 52 112 44"  stroke="#2d5a2d" stroke-width="1.4" fill="none" opacity="0.38"/>
+      <path d="M80 75Q98 74 116 67"  stroke="#2d5a2d" stroke-width="1.4" fill="none" opacity="0.38"/>
+      <path d="M80 95Q99 96 119 92"  stroke="#2d5a2d" stroke-width="1.4" fill="none" opacity="0.38"/>
+      <path d="M80 115Q98 118 116 117" stroke="#2d5a2d" stroke-width="1.4" fill="none" opacity="0.38"/>
+      <path d="M80 135Q96 140 110 141" stroke="#2d5a2d" stroke-width="1.4" fill="none" opacity="0.38"/>
+      <!-- stem -->
+      <path d="M80 160Q79 174 77 186" stroke="#2d5a2d" stroke-width="5" fill="none" stroke-linecap="round"/>
+    </svg>
+    <div class="hero-leaf-shadow"></div>
+  </div>
+
+  <span class="hero-badge">How close can you get to close?</span>
+  <h1 class="hero-title">The Perilla Leaf<br>Debate</h1>
+  <p class="hero-hangul">깻잎논쟁</p>
+  <blockquote class="hero-scenario">
+    "If your partner's close friend of the opposite sex helps them out — would you be bothered?"
+  </blockquote>
+  <a href="#vote" class="hero-cta">
+    Cast Your Vote
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M7 1v12M2 8l5 5 5-5"/>
+    </svg>
+  </a>
+
+  <p class="scroll-hint">↓ scroll</p>
+</section>
+
+<!-- ══════════════════════════════ NAV ════ -->
+<nav class="site-nav">
+  <a href="#vote">Vote</a>
+  <a href="#what">What Is It?</a>
+  <a href="#sides">Two Sides</a>
+  <a href="#context">Cultural Context</a>
+  <a href="#verdict">Takeaway</a>
+</nav>
+
+<!-- ══════════════════════════════ MAIN ═══ -->
+<main class="main-wrap">
+
+  <!-- ── VOTE ── -->
+  <div class="vote-card" id="vote">
+    <div class="vote-header">
+      <p class="vote-eyebrow">Live Debate</p>
+      <h2 class="vote-title">Where do you stand?</h2>
+      <p class="vote-sub">A close friend of the opposite sex peels a perilla leaf for your partner.</p>
+    </div>
+
+    <div class="vote-options" id="voteOptions">
+      <button class="vote-opt opt-fine" data-vote="fine">
+        <span class="opt-icon">🌿</span>
+        <span class="opt-title">It's totally fine</span>
+        <span class="opt-desc">Helping with food is practical, not intimate</span>
+      </button>
+      <button class="vote-opt opt-uncomfortable" data-vote="uncomfortable">
+        <span class="opt-icon">😤</span>
+        <span class="opt-title">I'd be uncomfortable</span>
+        <span class="opt-desc">That kind of closeness feels like it crosses a line</span>
+      </button>
+    </div>
+
+    <div class="vote-depends-row" id="voteDepends">
+      <button class="vote-depends-btn" data-vote="depends">It depends on the situation</button>
+    </div>
+
+    <div class="vote-confirmed" id="voteConfirmed">✓ Your vote has been recorded</div>
+
+    <div class="vote-results" id="voteResults">
+
+      <div class="result-row">
+        <div class="result-row-head">
+          <span class="result-label">
+            🌿 It's totally fine
+            <span class="voted-tag" id="badge-fine">You voted</span>
+          </span>
+          <span class="result-pct pct-blue" id="pct-fine">—</span>
+        </div>
+        <div class="result-track"><div class="result-fill fill-blue" id="bar-fine"></div></div>
+      </div>
+
+      <div class="result-row">
+        <div class="result-row-head">
+          <span class="result-label">
+            😤 I'd be uncomfortable
+            <span class="voted-tag" id="badge-uncomfortable">You voted</span>
+          </span>
+          <span class="result-pct pct-red" id="pct-uncomfortable">—</span>
+        </div>
+        <div class="result-track"><div class="result-fill fill-red" id="bar-uncomfortable"></div></div>
+      </div>
+
+      <div class="result-row">
+        <div class="result-row-head">
+          <span class="result-label">
+            🤔 It depends
+            <span class="voted-tag" id="badge-depends">You voted</span>
+          </span>
+          <span class="result-pct pct-gray" id="pct-depends">—</span>
+        </div>
+        <div class="result-track"><div class="result-fill fill-gray" id="bar-depends"></div></div>
+      </div>
+
+      <p class="vote-tally">
+        <span id="totalVotes">—</span> votes cast
+        <br><span class="vote-tally-note">* Votes persist locally on your device</span>
+      </p>
+    </div>
+  </div>
+
+  <!-- ── WHAT IS IT ── -->
+  <section class="content-section" id="what">
+    <p class="eyebrow">Background</p>
+    <h2>What Is the Perilla Leaf Debate?</h2>
+    <p>
+      In South Korea, <strong>perilla leaves (깻잎, kkaennip)</strong> are a common side dish at Korean BBQ — thin, slippery, and notoriously hard to separate from the stack with chopsticks.
+    </p>
+    <img src="perilla.jpg" alt="Perilla leaves (깻잎)" style="width:100%;border-radius:12px;margin:16px 0;display:block;">
+    <p>
+      The debate centers on a single scenario: <em>If your partner's close friend of the opposite sex helps separate a perilla leaf for them at dinner — would that bother you?</em>
+    </p>
+    <div class="callout">
+      This question exploded across Korean social media and TV talk shows in 2022, becoming a cultural flashpoint about jealousy, trust, and what counts as intimacy in a relationship.
+    </div>
+    <p>
+      At its core, the debate isn't about the leaf itself, but whether casual physical closeness between your partner and a friend of the opposite sex crosses a gray area of relational boundary.
+    </p>
+  </section>
+
+  <!-- ── TWO SIDES ── -->
+  <section class="content-section" id="sides">
+    <p class="eyebrow">The Debate</p>
+    <h2>Two Sides, One Leaf</h2>
+    <div class="sides-grid">
+      <div class="side-card sc-red">
+        <h3> 🙅‍♂️ Yes, I'd be uncomfortable </h3>
+        <ul>
+          <li>Helping someone with food is an intimate, caring act</li>
+          <li>Even small physical proximity can signal emotional closeness</li>
+          <li>Dismissing this feeling doesn't respect your partner</li>
+          <li>It's less about the act and more about what it signals</li>
+          <li>Partners should reserve certain gestures for each other</li>
+        </ul>
+      </div>
+      <div class="side-card sc-blue">
+        <h3>🌿 It's just a leaf</h3>
+        <ul>
+          <li>It's purely practical — helping someone grab slippery food</li>
+          <li>Jealousy over this reflects insecurity, not a real problem</li>
+          <li>Policing it is a form of controlling behavior</li>
+          <li>Close friends help each other — reading intimacy into it is projection</li>
+          <li>Trust shouldn't hinge on minor social interactions</li>
+        </ul>
+      </div>
+    </div>
+    <div class="blockquote" style="margin-top: 24px;">
+      "The debate showed that Koreans have very different baselines for what counts as intimate. It is not a generational gap — it is a values gap."
+      <cite>— Korean relationship columnist, 2022</cite>
+    </div>
+  </section>
+
+  <!-- ── CULTURAL CONTEXT ── -->
+  <section class="content-section" id="context">
+    <p class="eyebrow">Cultural Context</p>
+    <h2>Why This Resonated in Korea</h2>
+    <p>
+      <strong>Communal dining culture:</strong> Korean BBQ and banchan are eaten together. Helping others with food is a built-in social ritual — making the perilla leaf moment entirely plausible and common.
+    </p>
+    <p>
+      <strong>Skinship norms:</strong> Korean culture distinguishes clearly between physical contact appropriate between friends versus partners. This scenario sits uncomfortably in that grey zone.
+    </p>
+    <p>
+      <strong>Shifting gender dynamics:</strong> Young Korean couples are navigating rapidly changing expectations around independence, jealousy, and gender roles. The debate became a proxy for much larger conversations.
+    </p>
+    <div class="callout">
+      Psychologists noted that neither side is objectively right — the reaction reflects each person's attachment style, past experiences, and personal definition of intimacy.
+    </div>
+    <p>
+      The debate went viral in early 2022 via Twitter, Instagram, and YouTube in Korea, then spread into international K-culture communities on Reddit and TikTok. By 2024, "perilla leaf debate" had become shorthand in Korean internet culture for discussions about relationship boundaries.
+    </p>
+  </section>
+
+  <!-- ── VERDICT ── -->
+  <section class="content-section" id="verdict">
+    <p class="eyebrow">Takeaway</p>
+    <h2>What Does It Mean?</h2>
+    <div class="verdict-card">
+      <h3>No Wrong Answer — But There Is a Conversation to Have</h3>
+      <p>
+        The perilla leaf itself is inconsequential, but the feelings it surfaces are real. Dismissing a partner's discomfort — or policing their social interactions over a leaf — are both signs of deeper incompatibility. The debate's true value is what it reveals: couples need shared definitions of intimacy, trust, and appropriate closeness with others.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══════════════════════════ FOOTER ════ -->
+<footer>
+  <p>깻잎논쟁 — The Perilla Leaf Debate</p>
+  <p style="margin-top:6px;opacity:0.55;">A cultural snapshot of South Korean relationship discourse, 2022–present</p>
+</footer>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getDatabase, ref, onValue, runTransaction } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyC-eF-KxTvvK6semjEvFT4uCb0O_G8BHmU",
+    authDomain: "perilla-debate.firebaseapp.com",
+    databaseURL: "https://perilla-debate-default-rtdb.firebaseio.com",
+    projectId: "perilla-debate",
+    storageBucket: "perilla-debate.firebasestorage.app",
+    messagingSenderId: "83736139602",
+    appId: "1:83736139602:web:fa461130d9f35b5b044c8b"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+  const votesRef = ref(db, 'votes');
+
+  let latestData = { fine: 0, uncomfortable: 0, depends: 0 };
+  const voted = localStorage.getItem('perilla_voted');
+
+  // Real-time listener — updates bars live as anyone votes
+  onValue(votesRef, (snapshot) => {
+    latestData = Object.assign({ fine: 0, uncomfortable: 0, depends: 0 }, snapshot.val());
+    if (document.getElementById('voteResults').classList.contains('show')) {
+      renderBars(latestData);
+    }
+  });
+
+  function total(data) {
+    return (data.fine || 0) + (data.uncomfortable || 0) + (data.depends || 0);
+  }
+
+  function pct(data, key) {
+    const t = total(data);
+    return t === 0 ? 0 : Math.round((data[key] || 0) / t * 100);
+  }
+
+  function renderBars(data) {
+    document.getElementById('pct-fine').textContent          = pct(data, 'fine') + '%';
+    document.getElementById('pct-uncomfortable').textContent = pct(data, 'uncomfortable') + '%';
+    document.getElementById('pct-depends').textContent       = pct(data, 'depends') + '%';
+    document.getElementById('totalVotes').textContent        = total(data).toLocaleString();
+
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      document.getElementById('bar-fine').style.width          = pct(data, 'fine') + '%';
+      document.getElementById('bar-uncomfortable').style.width = pct(data, 'uncomfortable') + '%';
+      document.getElementById('bar-depends').style.width       = pct(data, 'depends') + '%';
+    }));
+  }
+
+  function showResults(choice, showBanner) {
+    document.getElementById('voteOptions').style.display = 'none';
+    document.getElementById('voteDepends').style.display = 'none';
+    document.getElementById('voteResults').classList.add('show');
+
+    if (showBanner) {
+      document.getElementById('voteConfirmed').classList.add('show');
+    }
+    if (choice) {
+      const badge = document.getElementById('badge-' + choice);
+      if (badge) badge.classList.add('show');
+    }
+
+    renderBars(latestData);
+  }
+
+  function castVote(choice) {
+    if (voted) return;
+    const choiceRef = ref(db, 'votes/' + choice);
+    runTransaction(choiceRef, (current) => (current || 0) + 1).then(() => {
+      localStorage.setItem('perilla_voted', choice);
+      showResults(choice, true);
+    });
+  }
+
+  document.querySelectorAll('[data-vote]').forEach(btn => {
+    btn.addEventListener('click', () => castVote(btn.getAttribute('data-vote')));
+  });
+
+  // Returning visitor — show results immediately
+  if (voted) showResults(voted, false);
+</script>
+
+</body>
+</html>
