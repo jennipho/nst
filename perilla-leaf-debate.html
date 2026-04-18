@@ -435,6 +435,117 @@
     }
     .verdict-card h3 { font-size: 1.2rem; font-weight: 700; color: white; margin-bottom: 12px; }
     .verdict-card p  { font-size: 0.95rem; color: rgba(255,255,255,0.75); max-width: 600px; margin: 0 auto; }
+    .verdict-examples {
+      list-style: none;
+      margin: 20px auto 0;
+      max-width: 520px;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .verdict-examples li {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 11px 16px;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.5;
+    }
+    .verdict-prompt {
+      margin-top: 22px !important;
+      font-style: italic;
+      color: rgba(255,255,255,0.5) !important;
+      font-size: 0.88rem !important;
+    }
+
+    /* comments */
+    .comments-section {
+      margin-top: 72px;
+    }
+    .comment-form {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 28px 24px;
+      margin-bottom: 32px;
+    }
+    .comment-form h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--g-deep);
+      margin-bottom: 16px;
+    }
+    .comment-inputs {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .comment-inputs input,
+    .comment-inputs textarea {
+      font-family: inherit;
+      font-size: 0.9rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 14px;
+      color: var(--text);
+      background: var(--page-bg);
+      outline: none;
+      transition: border-color 0.15s;
+      resize: none;
+    }
+    .comment-inputs input:focus,
+    .comment-inputs textarea:focus { border-color: var(--g-bright); }
+    .comment-inputs textarea { min-height: 88px; }
+    .comment-submit {
+      margin-top: 12px;
+      background: var(--g-deep);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 10px 28px;
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.15s;
+    }
+    .comment-submit:hover { background: var(--g-mid); transform: translateY(-1px); }
+    .comment-submit:disabled { opacity: 0.5; cursor: default; transform: none; }
+    .comment-list { display: flex; flex-direction: column; gap: 14px; }
+    .comment-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 20px;
+    }
+    .comment-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+    .comment-name {
+      font-weight: 600;
+      font-size: 0.88rem;
+      color: var(--g-deep);
+    }
+    .comment-time {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    .comment-text {
+      font-size: 0.92rem;
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .comments-empty {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.88rem;
+      padding: 24px 0;
+    }
 
     /* ── FOOTER ───────────────────────────────── */
 
@@ -670,7 +781,7 @@
       <strong>Shifting gender dynamics:</strong> Young Korean couples are navigating rapidly changing expectations around independence, jealousy, and gender roles. The debate became a proxy for much larger conversations.
     </p>
     <div class="callout">
-      Psychologists noted that neither side is objectively right — the reaction reflects each person's attachment style, past experiences, and personal definition of intimacy.
+      The internet has agreed that no side is objectively right — the reaction reflects each person's attachment style, past experiences, and personal definition of intimacy.
     </div>
     <p>
       <a href="https://www.reddit.com/r/korea/comments/15uit06/have_you_guys_heard_of_%EA%B9%BB%EC%9E%8E_%EB%85%BC%EC%9F%81perilla_leaf_debate/" target="_blank" rel="noopener noreferrer">The debate went viral in early 2022</a> via Reddit, Twitter, and YouTube in Korea, then spread into international K-culture communities. By 2024, "perilla leaf debate" had become shorthand in Korean internet culture for discussions about relationship boundaries.
@@ -682,10 +793,39 @@
     <p class="eyebrow">Takeaway</p>
     <h2>What Does It Mean?</h2>
     <div class="verdict-card">
-      <h3>No Wrong Answer — But There Is a Conversation to Have</h3>
+      <h3>It's Not Really About the Leaf</h3>
       <p>
-        The perilla leaf itself is inconsequential, but the feelings it surfaces are real. Dismissing a partner's discomfort — or policing their social interactions over a leaf — are both signs of deeper incompatibility. The debate's true value is what it reveals: couples need shared definitions of intimacy, trust, and appropriate closeness with others.
+        The perilla leaf is just the trigger. The real question is: where does your boundary sit between closeness and intimacy — and does your partner share that line?
       </p>
+      <p style="margin-top: 14px;">
+        These situations come up everywhere, not just at a Korean BBQ:
+      </p>
+      <ul class="verdict-examples">
+        <li>An opposite-gender friend picks up food for your partner on the way over</li>
+        <li>Your partner and a close friend of the opposite gender work out together regularly</li>
+        <li>A friend texts your partner every day — just to vent, check in, share memes</li>
+        <li>Someone from work drives your partner home after a late night</li>
+      </ul>
+      <p class="verdict-prompt">
+        None of these are black-and-white. Where would you draw the line? Share your take below.
+      </p>
+    </div>
+
+    <!-- ── COMMENTS ── -->
+    <div class="comments-section" id="comments">
+      <p class="eyebrow" style="margin-bottom:8px;">Community</p>
+      <h2 style="margin-bottom:28px;">Where Do You Draw the Line?</h2>
+      <div class="comment-form">
+        <h3>Share your thoughts</h3>
+        <div class="comment-inputs">
+          <input id="commentName" type="text" placeholder="Your name (or stay anonymous)" maxlength="40" />
+          <textarea id="commentText" placeholder="Tell us where you'd draw the line, or share a scenario from your own life..." maxlength="500"></textarea>
+        </div>
+        <button class="comment-submit" id="commentSubmit">Post Comment</button>
+      </div>
+      <div class="comment-list" id="commentList">
+        <p class="comments-empty">No comments yet — be the first to share.</p>
+      </div>
     </div>
   </section>
 
@@ -699,7 +839,7 @@
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getDatabase, ref, onValue, runTransaction } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+  import { getDatabase, ref, onValue, runTransaction, push, serverTimestamp, query, orderByChild, limitToLast } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyC-eF-KxTvvK6semjEvFT4uCb0O_G8BHmU",
@@ -779,6 +919,58 @@
 
   // Returning visitor — show results immediately
   if (voted) showResults(voted, false);
+
+  // ── COMMENTS ──────────────────────────────────────────
+  const commentsRef = query(ref(db, 'comments'), orderByChild('ts'), limitToLast(50));
+
+  function timeAgo(ts) {
+    const diff = Date.now() - ts;
+    const m = Math.floor(diff / 60000);
+    if (m < 1) return 'just now';
+    if (m < 60) return m + 'm ago';
+    const h = Math.floor(m / 60);
+    if (h < 24) return h + 'h ago';
+    return Math.floor(h / 24) + 'd ago';
+  }
+
+  onValue(commentsRef, (snapshot) => {
+    const list = document.getElementById('commentList');
+    const items = [];
+    snapshot.forEach(child => items.push(child.val()));
+    if (items.length === 0) {
+      list.innerHTML = '<p class="comments-empty">No comments yet — be the first to share.</p>';
+      return;
+    }
+    list.innerHTML = items.reverse().map(c => `
+      <div class="comment-item">
+        <div class="comment-meta">
+          <span class="comment-name">${escHtml(c.name || 'Anonymous')}</span>
+          <span class="comment-time">${timeAgo(c.ts)}</span>
+        </div>
+        <p class="comment-text">${escHtml(c.text)}</p>
+      </div>`).join('');
+  });
+
+  function escHtml(str) {
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  document.getElementById('commentSubmit').addEventListener('click', () => {
+    const name = document.getElementById('commentName').value.trim();
+    const text = document.getElementById('commentText').value.trim();
+    if (!text) return;
+    const btn = document.getElementById('commentSubmit');
+    btn.disabled = true;
+    push(ref(db, 'comments'), {
+      name: name || 'Anonymous',
+      text,
+      ts: Date.now()
+    }).then(() => {
+      document.getElementById('commentName').value = '';
+      document.getElementById('commentText').value = '';
+      btn.disabled = false;
+    }).catch(() => { btn.disabled = false; });
+  });
 </script>
 
 </body>
